@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Blog homepage</title>
+  </head>
+  <body>
+    
+    {% if recent_posts %}
+      {% for post in recent_posts %}
+        <h2>
+          <a href="{% url 'post' post.id %}">{{ post.title }}</a>
+        </h2>
+        <p>Updated: {{ post.updated }}</p>
+        <p>{{ post.text }}</p>
+      {% endfor %}
+    
+    {% else %}
+      <p>No posts</p>
+    {% endif %}
+
+  </body>
+</html>

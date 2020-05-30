@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Blog homepage</title>
+  </head>
+  <body>
+    <h2>
+      <a href="{% url 'post' post.id %}">{{ post.title }}</a>
+    </h2>
+    <p>Updated: {{ post.updated }}</p>
+    <p>{{ post.text }}</p>
+
+    <hr>
+    {% for tag in post.tags %}
+      <div>{{ tag }} </div>
+    {% endfor %}
+  
+    <hr>
+    {% if post.prev_post %}
+    <a href="{% url 'post' post.prev_post.id %}">Previous Post</a>
+    {% endif %}
+    {% if post.next_post %}
+    <a href="{% url 'post' post.next_post.id %}">Next Post</a>
+    {% endif %}
+
+  </body>
+</html>
