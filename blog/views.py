@@ -26,3 +26,6 @@ def create(request):
     template = 'blog/create.html'
     return render(request, template)
     
+
+def new(request):
+    pass
