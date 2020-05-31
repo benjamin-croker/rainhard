@@ -10,7 +10,7 @@ def index(request):
     template = 'blog/index.html'
     context = {'recent_posts': recent_posts}
 
-    return render(request, template, context )
+    return render(request, template, context)
 
 
 def post(request, post_id):
@@ -19,5 +19,10 @@ def post(request, post_id):
     template = 'blog/post.html'
     context = {'post': post}
 
-    return render(request, template, context )
+    return render(request, template, context)
+
+
+def create(request):
+    template = 'blog/create.html'
+    return render(request, template)
     
