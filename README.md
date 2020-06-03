@@ -5,6 +5,6 @@ Simple blogging site built on Django
 - [x] Basic model setup
 - [x] Add views to show posts
 - [x] Add basic edit page
-- [ ] Add user login to manage edit rights
+- [x] Add user login to manage edit rights
 - [ ] Add rich text / HTML posts with WYSIWYG editor (Tiny MCE)
 - [ ] Style and design

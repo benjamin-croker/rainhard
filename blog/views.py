@@ -3,6 +3,7 @@ import datetime as dt
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from blog.models import Post, Tag, PostTag
 
@@ -27,11 +28,18 @@ def post(request, post_id):
 
 @login_required
 def create(request):
+    if not request.user.has_perm('blog.add_post'):
+        return HttpResponseForbidden("Unauthorised")
+
     template = 'blog/create.html'
     return render(request, template)
 
 
+@login_required
 def new(request):
+    if not request.user.has_perm('blog.add_post'):
+        return HttpResponseForbidden("Unauthorised")
+
     if (len(request.POST['post_content']) == 0 or
         len(request.POST['post_title']) == 0):
         # blank post, handle error
@@ -63,7 +71,3 @@ def new(request):
     print('done:)')
     # args must be iterable, so add the extra comma to the tuple
     return HttpResponseRedirect(reverse('blog:post', args=(p.id, )))
-
-
-def testcurrentuser(request):
-    return HttpResponse(request.user.username)
