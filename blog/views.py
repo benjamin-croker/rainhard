@@ -1,7 +1,7 @@
 import datetime as dt
 
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.urls import reverse
 
 from blog.models import Post, Tag, PostTag
@@ -25,6 +25,7 @@ def post(request, post_id):
     return render(request, template, context)
 
 
+@login_required
 def create(request):
     template = 'blog/create.html'
     return render(request, template)
