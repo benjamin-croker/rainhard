@@ -9,6 +9,7 @@ urlpatterns = [
     path('create/', views.create, name='create'),
     # URL to POST data to
     path('new/', views.new, name='new'),
+    path('testcurrentuser/', views.testcurrentuser, name='testcurrentuser')
     # path('tags/', views.tags, name='tags'),
     # path('tags/<str:tag_id>/', views.tag, name='tag')
 ]

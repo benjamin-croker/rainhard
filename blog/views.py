@@ -63,3 +63,6 @@ def new(request):
     # args must be iterable, so add the extra comma to the tuple
     return HttpResponseRedirect(reverse('blog:post', args=(p.id, )))
 
+
+def testcurrentuser(request):
+    return HttpResponse(request.user.username)
