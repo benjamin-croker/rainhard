@@ -3,10 +3,27 @@
   <head>
     <meta charset="utf-8">
     <title>{% block title %}rainhard{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/blog.css' %}">
   </head>
+
   <body>
-  <p>Logged in as {{ user }}</p>
-  {% block body %}
-  {% endblock %}
+    <div class="container">
+
+      {% block body %}
+      {% endblock %}
+      
+      <br>
+      <footer class="text-muted text-center text-small">
+        <p>
+          Rainhard dev | Logged in as {{ user }} |
+          <a href="/accounts/logout">Logout</a> |
+          <a href="/accounts/login">Login</a>
+        </p>
+      </footer>
+
+    </div>
   </body>
+
 </html>

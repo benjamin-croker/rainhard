@@ -17,6 +17,16 @@ def index(request):
     return render(request, template, context)
 
 
+# all posts
+def posts(request):
+    recent_posts = Post.objects.order_by('-pub_datetime')[:20]
+
+    template = 'blog/posts.html'
+    context = {'recent_posts': recent_posts}
+
+    return render(request, template, context)
+
+
 def post(request, post_id):
     post = Post.objects.get(pk=int(post_id))
 
@@ -24,6 +34,12 @@ def post(request, post_id):
     context = {'post': post}
 
     return render(request, template, context)
+
+
+def about(request):
+    template = 'blog/about.html'
+    
+    return render(request, template)
 
 
 @login_required

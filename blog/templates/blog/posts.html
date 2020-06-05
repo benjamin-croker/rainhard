@@ -5,14 +5,13 @@
 {% include "blog/base_header.html" %}
     
 {% if recent_posts %}
-  {% for post in recent_posts %}
-    <h2>
-      <a href="{% url 'blog:post' post.id %}">{{ post.title }}</a>
-    </h2>
-    <p>Updated: {{ post.updated }}</p>
-    <p>{{ post.text }}</p>
-  {% endfor %}
-
+  <ul>
+    {% for post in recent_posts %}
+    <li>
+      <a class="text-dark" href="{% url 'blog:post' post.id %}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
 {% else %}
   <p>No posts</p>
 {% endif %}
