@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from blog.models import Post, Tag, PostTag
-
+from blog.process import clean_post_html
 
 def index(request):
     recent_posts = Post.objects.order_by('-pub_datetime')[:2]
@@ -29,9 +29,10 @@ def posts(request):
 
 def post(request, post_id):
     post = Post.objects.get(pk=int(post_id))
-
+    # need to clean the post text as it will be rendered as HTML
+    cleaned_post_html = clean_post_html(post.text)
     template = 'blog/post.html'
-    context = {'post': post}
+    context = {'post': post, 'cleaned_post_html': cleaned_post_html}
 
     return render(request, template, context)
 
