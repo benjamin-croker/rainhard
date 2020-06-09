@@ -1,7 +1,12 @@
 {% extends "blog/base.html" %}
+{% load static %}
 {% block title %}Create Post | rainhard{% endblock %}
 
 {% block body %}
+<script src="{% static 'blog/tinymce.min.js' %}"></script>
+<script>
+  tinymce.init({selector: '#post_content'});
+</script>
 
 <h1>Create New Post</h1>
 
@@ -14,7 +19,7 @@
   <h2>Title</h2>
   <input type="text" name="post_title" placeholder="Post Title" class="form-control">
   <h2>Content</h2>
-  <textarea name="post_content" placeholder="Post Content" class="form-control"></textarea>
+  <textarea id=post_content name="post_content" placeholder="Post Content" class="form-control"></textarea>
   <h2>Tags</h2>
   <p>Separate tags with spaces. Tags not starting with # will be ignored.</p>
   <input type="text" name="post_tags" placeholder="#tag1 #tag2" class="form-control">
