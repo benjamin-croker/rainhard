@@ -7,7 +7,7 @@
   <a href="{% url 'blog:post' post.id %}">{{ post.title }}</a>
 </h2>
 <p>Updated: {{ post.updated }}</p>
-<p>{{ cleaned_post_html | safe }}</p>
+<p>{{ post.cleaned_html | safe }}</p>
 
 <p class="text-muted">
   Tags:

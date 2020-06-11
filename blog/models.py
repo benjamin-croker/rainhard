@@ -1,4 +1,6 @@
+import bleach
 from django.db import models
+from blog.html_whitelist import ALLOWED_TAGS, ALLOWED_ATTRIBUTES, ALLOWED_STYLES
 
 
 class Post(models.Model):
@@ -34,6 +36,13 @@ class Post(models.Model):
     def tags(self):
         return [pt.tag for pt in self.posttag_set.all()]
 
+    @property
+    def cleaned_html(self):
+        return bleach.clean(
+            self.text,
+            ALLOWED_TAGS, ALLOWED_ATTRIBUTES, ALLOWED_STYLES,
+            strip=True
+        )
     
     def __str__(self):
         return self.title
