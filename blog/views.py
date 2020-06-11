@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidde
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
+from rainhard import settings
 from blog.models import Post, Tag, PostTag
 
 
@@ -48,7 +49,9 @@ def create(request):
         return HttpResponseForbidden("Unauthorised")
 
     template = 'blog/create.html'
-    return render(request, template)
+    context = {'tiny_mce_url': settings.TINY_MCE_URL}
+
+    return render(request, template, context )
 
 
 @login_required
@@ -76,7 +79,7 @@ def new(request):
     # Ignore tags not starting with '#' or tags == '#'
     # Remove '#' on valid tags
     tags = [t[1:] for t in request.POST['post_tags'].split(' ')
-            if t[0] == '#' and len(t) > 1]
+            if len(t) >= 2 and t[0] == '#']
 
     # get or create the tag objects then associate with the post
     for tag in tags:

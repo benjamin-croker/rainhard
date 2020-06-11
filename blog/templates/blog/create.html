@@ -3,9 +3,13 @@
 {% block title %}Create Post | rainhard{% endblock %}
 
 {% block body %}
-<script src="{% static 'blog/tinymce.min.js' %}"></script>
+<script src="{{ tiny_mce_url }}" referrerpolicy="origin"></script>
 <script>
-  tinymce.init({selector: '#post_content'});
+  tinymce.init({
+    selector: '#post_content',
+    plugins: "image",
+    relative_urls: false
+  });
 </script>
 
 <h1>Create New Post</h1>
