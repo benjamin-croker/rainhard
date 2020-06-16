@@ -4,10 +4,14 @@
 {% block body %}
 {% include "blog/base_header.html" %}
 
-<p>A blog made with rainhard</p>
-<a href="https://github.com/benjamin-croker/rainhard">
-  https://github.com/benjamin-croker/rainhard
-</a>
-<img src="{{ MEDIA_URL }}tank.jpg" />
+<div class="row">
+  <div class="col-sm-12">
+    <p>A blog made with rainhard</p>
+    <a href="https://github.com/benjamin-croker/rainhard">
+      https://github.com/benjamin-croker/rainhard
+    </a>
+    <img src="{{ MEDIA_URL }}tank.jpg" />
+  </div>
+</div>
 
 {% endblock %}

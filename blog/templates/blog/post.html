@@ -3,33 +3,49 @@
 
 {% block body %}
 {% include "blog/base_header.html" %}
-<h2>
-  <a href="{% url 'blog:post' post.id %}">{{ post.title }}</a>
-</h2>
-<p>Updated: {{ post.updated }}</p>
-<p>{{ post.cleaned_html | safe }}</p>
 
-<p class="text-muted">
-  Tags:
-  {% for tag in post.tags %}
-  {{ tag }} 
-  {% endfor %}
-</p>
+{% if post %}
+<div class="row py-3 shaded">
+  <div class="col-sm-12">
+    <a href="{% url 'blog:post' post.id %}" class="nounderline text-dark h2">{{ post.title }}</a>
+    <p>Updated: {{ post.updated }}</p>
+    <p>{{ post.cleaned_html | safe }}</p>  
+  </div>
+</div>
 
-<hr>
-<div class="row">
-  <div class="col-sm-2">
+<div class="row py-3 shaded">
+  <div class="col-sm-12">
+    <p class="text-muted">
+      {% if post.tags %}
+        Tags:
+        {% for tag in post.tags %}
+          {{ tag }} 
+        {% endfor %}
+      {% endif %}
+    </p>
+  </div>
+</div>
+
+<br>
+
+<div class="row py-3 shaded">
+  <div class="col-sm-4">
     {% if post.next_post %}
-    <a href="{% url 'blog:post' post.next_post.id %}">← {{ post.next_post.title}}</a>
+    <a href="{% url 'blog:post' post.next_post.id %}" class="nounderline">
+      ← {{ post.next_post.title}}
+    </a>
     {% endif %}
   </div>
-  <div class="col-sm-8"></div>
-  <div class="col-sm-2 text-right">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4 text-right">
     {% if post.prev_post %}
-    <a href="{% url 'blog:post' post.prev_post.id %}">{{ post.prev_post.title}} →</a>
+    <a href="{% url 'blog:post' post.prev_post.id %}" class="nounderline">
+      {{ post.prev_post.title}} →
+    </a>
     {% endif %}
   </div>
 </div>
-<hr>
 
+<br>
+{% endif %}
 {% endblock %}

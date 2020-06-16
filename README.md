@@ -8,6 +8,7 @@ Simple blogging site built on Django
 - [x] Add user login to manage edit rights
 - [x] Add rich text / HTML posts with WYSIWYG editor (Tiny MCE)
 - [x] Check ability to add images with rich text editor
+- [ ] Add better url structure for admin tasks like creating posts
 - [ ] Add file dropdown list or browser
 - [ ] Style and design
 

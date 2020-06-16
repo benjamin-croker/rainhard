@@ -1,5 +1,29 @@
+.shaded {
+  background-color: #fdfdfd;
+  box-shadow: 3px 3px #e0e0e0;
+}
+
+.background {
+  background-color:#f4f4f4;
+} 
+
 .navlink {
-  text-decoration: none !important
+  text-decoration: none !important;
+}
+
+.navlink:hover {
+  color: #fdfdfd;
+  background-color: #373b3f;
+}
+
+.nounderline {
+  text-decoration: none !important;
+  color: #6c757d
+}
+
+.nounderline:hover {
+  text-decoration: none !important;
+  color: #373b3f;
 }
 
 img {

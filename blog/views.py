@@ -10,10 +10,16 @@ from blog.models import Post, Tag, PostTag
 
 
 def index(request):
-    recent_posts = Post.objects.order_by('-pub_datetime')[:2]
+    # shows the most recent post
+    recent_posts = Post.objects.order_by('-pub_datetime')[:1]
 
-    template = 'blog/index.html'
-    context = {'recent_posts': recent_posts}
+    if(len(recent_posts) >= 1):
+        post = recent_posts[0]
+    else:
+        post = None
+
+    template = 'blog/post.html'
+    context = {'post': post}
 
     return render(request, template, context)
 
@@ -29,8 +35,8 @@ def posts(request):
 
 
 def post(request, post_id):
-    post = Post.objects.get(pk=int(post_id))
-    # need to clean the post text as it will be rendered as HTML
+    post = get_object_or_404(Post, pk=int(post_id))
+
     template = 'blog/post.html'
     context = {'post': post}
 
