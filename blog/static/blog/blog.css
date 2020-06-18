@@ -27,6 +27,37 @@
 }
 
 img {
-  max-width: 100%;
+  max-width: 80%;
   height: auto;
+  width: auto;
+  margin: auto;
+  display: block;
+}
+
+.page-item > a
+{
+    background-color: #fdfdfd;
+    color: #343a40;
+}
+
+.pagination > .active-pg > a
+{
+    color: #fdfdfd;
+    background-color: #6d7277;
+    border-color: #6d7277;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: #373b3f;
+    background-color: #f4f4f4;
+}
+
+.pagination > .active-pg > a:hover
+{
+    background-color: #343a40;
+    color: #fdfdfd;
 }

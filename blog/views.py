@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 from rainhard import settings
 from blog.models import Post, Tag, PostTag
@@ -25,11 +26,13 @@ def index(request):
 
 
 # all posts
-def posts(request):
-    recent_posts = Post.objects.order_by('-pub_datetime')[:20]
+def posts(request, page_number=1):
+    p = Paginator(Post.objects.order_by('-pub_datetime'), 2)
 
     template = 'blog/posts.html'
-    context = {'recent_posts': recent_posts}
+    context = {'page_posts': p.page(int(page_number)).object_list,
+               'page_number': page_number,
+               'page_range': list(p.page_range)}
 
     return render(request, template, context)
 

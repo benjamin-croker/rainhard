@@ -7,8 +7,8 @@
 {% if post %}
 <div class="row py-3 shaded">
   <div class="col-sm-12">
-    <a href="{% url 'blog:post' post.id %}" class="nounderline text-dark h2">{{ post.title }}</a>
-    <p>Updated: {{ post.updated }}</p>
+    <a href="{% url 'blog:post' post.id %}" class="nounderline text-dark display-4">{{ post.title }}</a>
+    <p class="text-muted py-1">Updated: {{ post.updated }}</p>
     <p>{{ post.cleaned_html | safe }}</p>  
   </div>
 </div>
@@ -17,10 +17,9 @@
   <div class="col-sm-12">
     <p class="text-muted">
       {% if post.tags %}
-        Tags:
-        {% for tag in post.tags %}
-          {{ tag }} 
-        {% endfor %}
+        Tags: {% for tag in post.tags %}{{ tag }} {% endfor %}
+      {% else %}
+        No tags
       {% endif %}
     </p>
   </div>

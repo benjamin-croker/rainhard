@@ -5,8 +5,9 @@ app_name = 'blog'
 urlpatterns = [
     path('', views.index, name='index'),
     path('about', views.about, name='about'),
-    # all posts
+    # post list, default to page 1
     path('posts', views.posts, name='posts'),
+    path('posts/<int:page_number>/', views.posts, name='posts'),
     # specific post
     path('post/<int:post_id>/', views.post, name='post'),
     # form for creating a new blog post
