@@ -52,28 +52,23 @@ def about(request):
     return render(request, template)
 
 
-@login_required
-def create(request):
-    if not request.user.has_perm('blog.add_post'):
-        return HttpResponseForbidden("Unauthorised")
-
-    template = 'blog/create.html'
-    context = {'tiny_mce_url': settings.TINY_MCE_URL}
-
-    return render(request, template, context )
+def _create_form(request):
+    return render(
+        request, 'blog/create.html',
+        context={'tiny_mce_url': settings.TINY_MCE_URL}
+    )
 
 
-@login_required
-def new(request):
-    if not request.user.has_perm('blog.add_post'):
-        return HttpResponseForbidden("Unauthorised")
+def _create_handler(request):
 
     if (len(request.POST['post_content']) == 0 or
         len(request.POST['post_title']) == 0):
+        
         # blank post, handle error
         return render(
             request, 'blog/create.html',
-            context={'error_message': "Title and Content must be filled"}
+            context={'error_message': "Title and Content must be filled",
+                     'tiny_mce_url': settings.TINY_MCE_URL}
         )
 
     # create the new post
@@ -96,6 +91,24 @@ def new(request):
         t.save()
         pt = PostTag(post=p, tag=t)
         pt.save()
-    print('done:)')
     # args must be iterable, so add the extra comma to the tuple
     return HttpResponseRedirect(reverse('blog:post', args=(p.id, )))
+
+
+@login_required
+def create(request):
+    if not request.user.has_perm('blog.add_post'):
+        return HttpResponseForbidden("Unauthorised")
+
+    if request.method == 'GET':
+        return _create_form(request)
+    elif request.method == 'POST':
+         return _create_handler(request)
+
+
+@login_required
+def new(request):
+    if not request.user.has_perm('blog.add_post'):
+        return HttpResponseForbidden("Unauthorised")
+
+    

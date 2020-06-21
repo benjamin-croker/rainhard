@@ -1,10 +1,10 @@
 .shaded {
   background-color: #fdfdfd;
-  box-shadow: 3px 3px #e0e0e0;
+  box-shadow: 3px 3px 10px #e0e0e0;
 }
 
 .background {
-  background-color:#f4f4f4;
+  background-color:#fafafa;
 } 
 
 .navlink {
@@ -53,7 +53,7 @@ img {
 .pagination > li > span:hover
 {
     color: #373b3f;
-    background-color: #f4f4f4;
+    background-color: #fafafa;
 }
 
 .pagination > .active-pg > a:hover
