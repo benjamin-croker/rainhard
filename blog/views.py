@@ -26,13 +26,32 @@ def index(request):
 
 
 # all posts
-def posts(request, page_number=1):
-    p = Paginator(Post.objects.order_by('-pub_datetime'), 2)
+def all_posts(request, page_number=1):
+    post_list = Post.objects.order_by('-pub_datetime')
+    p = Paginator(post_list, 2)
 
-    template = 'blog/posts.html'
+    template = 'blog/all_posts.html'
     context = {'page_posts': p.page(int(page_number)).object_list,
                'page_number': page_number,
                'page_range': list(p.page_range)}
+
+    return render(request, template, context)
+
+
+# post for a specific tag
+def tag_posts(request, tag_text, page_number=1):
+    # check tag exists first
+    tag = get_object_or_404(Tag, text=tag_text)
+    post_pks = tag.posttag_set.values('post')
+    post_list = Post.objects.filter(pk__in=post_pks).order_by('-pub_datetime')
+    
+    p = Paginator(post_list, 2)
+
+    template = 'blog/tag_posts.html'
+    context = {'page_posts': p.page(int(page_number)).object_list,
+               'page_number': page_number,
+               'page_range': list(p.page_range),
+               'tag_text': tag_text}
 
     return render(request, template, context)
 

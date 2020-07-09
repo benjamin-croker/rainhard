@@ -13,15 +13,22 @@
   </div>
 </div>
 
+<br>
+
 <div class="row py-3 shaded">
   <div class="col-sm-12">
-    <p class="text-muted">
-      {% if post.tags %}
-        Tags: {% for tag in post.tags %}{{ tag }} {% endfor %}
-      {% else %}
-        No tags
-      {% endif %}
-    </p>
+
+    {% if post.tags %}
+      <span class="text-muted">Tags:</span>
+      {% for tag in post.tags %}
+        <a href="{% url 'blog:tag_posts' tag.text %}" class="nounderline">
+          {{ tag }}
+        </a> 
+      {% endfor %}
+    {% else %}
+      <span class="text-muted">No Tags</span>
+    {% endif %}
+
   </div>
 </div>
 
