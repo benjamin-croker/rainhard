@@ -13,19 +13,35 @@
   </head>
 
   <body class="background">
+    
+    {% if user.is_authenticated %}
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">Rainhard Author</a>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <span class="nav-link disabled">Logged in as {{ user }}</span>
+            </li>
+          </ul>
+          <a class="btn btn-outline-light mx-2" type="submit" href="/author/logout">Logout</a>
+          <a class="btn btn-outline-info" type="submit" href="author/create">Create Post</a>
+        </nav>
+    {% endif %}
+        
     <div class="container">
 
       {% block body %}
       {% endblock %}
-      
-      <br>
-      <footer class="text-muted text-center text-small">
-        <p>
-          Rainhard dev | Logged in as {{ user }} |
-          <a href="/accounts/logout">Logout</a> |
-          <a href="/accounts/login">Login</a>
-        </p>
-      </footer>
+
+      {% if debug %}
+        <br>
+        <footer class="text-muted text-center text-small">
+          <p>
+            Rainhard dev | Logged in as {{ user }} |
+            <a href="/author/logout">Logout</a> |
+            <a href="/author/login">Login</a>
+          </p>
+        </footer>
+      {% endif %}
 
     </div>
   </body>

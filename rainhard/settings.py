@@ -13,6 +13,13 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 from rainhard.local_settings import *
+# The following settings must be specified in local_settings.py
+# The values below are examples only
+# SECRET_KEY = '!@#$%^&*()'
+# DEBUG = False
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+# INTERNAL_IPS = ['127.0.0.1', 'localhost']
+# TINY_MCE_URL = "https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -95,7 +102,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL = '/author/login/'
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_URL = '/author/logout/'
 LOGOUT_REDIRECT_URL = '/'
 
 

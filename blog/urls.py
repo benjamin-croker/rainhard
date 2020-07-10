@@ -16,6 +16,7 @@ urlpatterns = [
 
     # specific post
     path('post/<int:post_id>/', views.post, name='post'),
-    # form for creating a new blog post
-    path('accounts/create/', views.create, name='create'),
+
+    # urls for authoring and editing posts
+    path('author/create/', views.create, name='create'),
 ]
