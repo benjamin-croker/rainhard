@@ -125,9 +125,7 @@ def create(request):
          return _create_handler(request)
 
 
+# simple view to check login
 @login_required
-def new(request):
-    if not request.user.has_perm('blog.add_post'):
-        return HttpResponseForbidden("Unauthorised")
-
-    
+def author(request):
+    return HttpResponseRedirect(reverse('blog:index'))

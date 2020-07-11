@@ -2,13 +2,29 @@
 {% block title %}Login | rainhard{% endblock %}
 
 {% block body %}
+{% include "blog/base_header.html" %}
 
-<h1>Login</h1>
-
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Login</button>
-</form>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4 shaded text-center py-3">
+    <form method="post">
+      {% csrf_token %}
+      <h1 class="h3 mb-3 font-weight-normal">Author Login</h1>
+      <br>
+      <input type="text" name="username" id="id_username"
+             placeholder="Username" autofocus="" autocapitalize="none" autocomplete="off" maxlength="150" required=""
+             class="form-control"
+             style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+      <br>
+      <input type="password" name="password" id="id_password" placeholder="Password"
+             autocomplete="off" required="" class="form-control"
+             style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: pointer;">
+      <br>
+      <!-- {{ form.as_p }} -->
+      <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
 
 {% endblock %}
