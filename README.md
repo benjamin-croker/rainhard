@@ -11,7 +11,7 @@ Simple blogging site built on Django
 - [x] Add better url structure for admin tasks like creating posts
 - [ ] Add file dropdown list or browser
 - [x] Style and design
-- [ ] Edit posts
+- [x] Edit and delete posts
 - [ ] Docs, landing page, screenshots
 - [ ] Example production deployment guide
 

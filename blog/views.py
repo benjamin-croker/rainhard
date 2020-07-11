@@ -192,3 +192,16 @@ def update(request, post_id):
         return _update_form(request, post)
     elif request.method == 'POST':
          return _update_handler(request, post)
+
+
+@login_required
+def delete(request, post_id):
+    if not request.user.has_perms(['blog.delete_post',
+                                   'blog.delete_posttag']):
+        return HttpResponseForbidden("Unauthorised")
+
+    post = get_object_or_404(Post, pk=int(post_id))
+    # delete all existing post-tag associations
+    post.posttag_set.all().delete()
+    post.delete()
+    return HttpResponseRedirect(reverse('blog:index'))

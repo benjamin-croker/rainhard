@@ -16,7 +16,6 @@
     
     {% if user.is_authenticated %}
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-          <a class="navbar-brand" href="#">Rainhard Author</a>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <span class="nav-link disabled">Logged in as {{ user }}</span>
@@ -24,9 +23,16 @@
           </ul>
           <a class="btn btn-outline-light mx-2" type="submit" href="/author/logout">Logout</a>
           {% if post %}
-            <a class="btn btn-outline-info mx-2" type="submit" href="/author/update/{{post.id}}">Update Post</a>
+            <form action="/author/delete/{{post.id}}" method="post">
+              {% csrf_token %}
+              <button class="btn btn-outline-danger mx-2" type="submit"
+                      onclick="return confirm('Delete Post?')">
+                Delete
+              </button>
+            </form>
+            <a class="btn btn-outline-info mx-2" type="submit" href="/author/update/{{post.id}}">Update</a>
           {% endif %}
-          <a class="btn btn-outline-info" type="submit" href="/author/create">Create Post</a>
+          <a class="btn btn-outline-info mx-2" type="submit" href="/author/create">Create Post</a>
         </nav>
     {% endif %}
         
