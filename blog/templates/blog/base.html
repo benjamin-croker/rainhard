@@ -23,7 +23,10 @@
             </li>
           </ul>
           <a class="btn btn-outline-light mx-2" type="submit" href="/author/logout">Logout</a>
-          <a class="btn btn-outline-info" type="submit" href="author/create">Create Post</a>
+          {% if post %}
+            <a class="btn btn-outline-info mx-2" type="submit" href="/author/update/{{post.id}}">Update Post</a>
+          {% endif %}
+          <a class="btn btn-outline-info" type="submit" href="/author/create">Create Post</a>
         </nav>
     {% endif %}
         

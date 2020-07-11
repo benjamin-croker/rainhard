@@ -35,6 +35,10 @@ class Post(models.Model):
     @property
     def tags(self):
         return [pt.tag for pt in self.posttag_set.all()]
+    
+    @property
+    def tags_str(self):
+        return " ".join([str(t) for t in self.tags])
 
     @property
     def cleaned_html(self):

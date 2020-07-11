@@ -20,4 +20,5 @@ urlpatterns = [
     # urls for authoring and editing posts
     path('author/', views.author, name='author'),
     path('author/create/', views.create, name='create'),
+    path('author/update/<int:post_id>', views.update, name='update'),
 ]
