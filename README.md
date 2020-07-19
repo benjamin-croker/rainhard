@@ -1,7 +1,31 @@
 # Rainhard
-Rainhard is a simple blogging site built on Django.
+Rainhard is a simple and clean blogging site built on Django.
 
-## TODO
+It supports
+
+### Rich Text Posts
+![update](screenshots/rich_text.png)
+
+### Browsing By Tags
+![update](screenshots/tags.png)
+
+### Images
+![images](screenshots/images.png)
+
+## Author use
+Rainhard uses the Django admin page for user creating and managing users.
+
+Navigate to `http://<base_url>/author` to be greeted with a login. A toolbar
+will appear at the top of the page for creating posts.
+
+When viewing the page for a post, buttons will for updating and deleting
+the post.
+
+![update](screenshots/update.png)
+
+## Development 
+
+### TODO
 - [x] Basic model setup
 - [x] Add views to show posts
 - [x] Add basic edit page
@@ -12,12 +36,19 @@ Rainhard is a simple blogging site built on Django.
 - [ ] Add file dropdown list or browser
 - [x] Style and design
 - [x] Edit and delete posts
-- [ ] Docs, landing page, screenshots
+- [x] Docs, landing page, screenshots
 - [ ] Example production deployment guide
 
-## Resources Used
-Code from the following is included directly in this application
+### Resources Used
+Bleach-whitelist was used to whitelist certain HTML tags from
+the rich text editor
 https://github.com/yourcelf/bleach-whitelist
+
+Bootstrap 4.5 was used for CSS
+https://getbootstrap.com/
+
+Tiny MCE is used for the rich text editor
+https://www.tiny.cloud/
 
 ### Local Settings
 A file `rainhard/local_settings.py` must be created to define the

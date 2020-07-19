@@ -17,7 +17,7 @@
               <span class="nav-link disabled">Logged in as {{ user }}</span>
             </li>
           </ul>
-          <a class="btn btn-outline-light mx-2" type="submit" href="/author/logout">Logout</a>
+          <a class="btn btn-outline-light mx-2" role="button" href="/author/logout">Logout</a>
           {% if post %}
             <form action="/author/delete/{{post.id}}" method="post">
               {% csrf_token %}
@@ -26,9 +26,9 @@
                 Delete
               </button>
             </form>
-            <a class="btn btn-outline-info mx-2" type="submit" href="/author/update/{{post.id}}">Update</a>
+            <a class="btn btn-outline-info mx-2" role="button" href="/author/update/{{post.id}}">Update</a>
           {% endif %}
-          <a class="btn btn-outline-info mx-2" type="submit" href="/author/create">Create Post</a>
+          <a class="btn btn-outline-info mx-2" role="button" href="/author/create">Create Post</a>
         </nav>
     {% endif %}
         
