@@ -2,14 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>{% block title %}rainhard{% endblock %}</title>
+    <title>{% block title %}{{ blog_name }}{% endblock %}</title>
     {% load static %}
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-      crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/blog.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/bootstrap.min.css' %}">
   </head>
 
   <body class="background">
@@ -41,17 +37,18 @@
       {% block body %}
       {% endblock %}
 
+      <br>
+      <footer class="text-muted text-center text-small">
       {% if debug %}
-        <br>
-        <footer class="text-muted text-center text-small">
-          <p>
-            Rainhard dev | Logged in as {{ user }} |
-            <a href="/author/logout">Logout</a> |
-            <a href="/author/login">Login</a>
-          </p>
-        </footer>
+        <p>
+          Rainhard debug | Logged in as {{ user }} |
+          <a href="/author/logout">Logout</a> |
+          <a href="/author/login">Login</a>
+        </p>
+      {% else %}
+        <p>Built with Rainhard</p>
       {% endif %}
-
+      </footer>
     </div>
   </body>
 

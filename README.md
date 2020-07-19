@@ -1,5 +1,5 @@
-# rainhard
-Simple blogging site built on Django
+# Rainhard
+Rainhard is a simple blogging site built on Django.
 
 ## TODO
 - [x] Basic model setup
@@ -18,3 +18,23 @@ Simple blogging site built on Django
 ## Resources Used
 Code from the following is included directly in this application
 https://github.com/yourcelf/bleach-whitelist
+
+### Local Settings
+A file `rainhard/local_settings.py` must be created to define the
+constants shown in the example below.
+
+```python
+# These will be shown on the about page
+BLOG_NAME = 'Rainhard'
+BLOG_ABOUT = 'A blog made with Rainhard.'
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = '!@#$%^&*()'
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+INTERNAL_IPS = ['127.0.0.1', 'localhost']
+# This is set up when creating a Tiny account
+TINY_MCE_URL = "https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"
+```

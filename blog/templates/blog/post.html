@@ -1,5 +1,5 @@
 {% extends "blog/base.html" %}
-{% block title %}{{ post.title }} | rainhard{% endblock %}
+{% block title %}{{ blog_name }} | {{ post.title }}{% endblock %}
 
 {% block body %}
 {% include "blog/base_header.html" %}

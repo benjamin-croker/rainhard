@@ -5,10 +5,12 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidde
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.conf import settings
 
 from rainhard import settings
 from blog.models import Post, Tag, PostTag
 
+PAGE_SIZE = 10
 
 def index(request):
     # shows the most recent post
@@ -28,7 +30,7 @@ def index(request):
 # all posts
 def all_posts(request, page_number=1):
     post_list = Post.objects.order_by('-pub_datetime')
-    p = Paginator(post_list, 2)
+    p = Paginator(post_list, PAGE_SIZE)
 
     template = 'blog/all_posts.html'
     context = {'page_posts': p.page(int(page_number)).object_list,
@@ -45,7 +47,7 @@ def tag_posts(request, tag_text, page_number=1):
     post_pks = tag.posttag_set.values('post')
     post_list = Post.objects.filter(pk__in=post_pks).order_by('-pub_datetime')
     
-    p = Paginator(post_list, 2)
+    p = Paginator(post_list, PAGE_SIZE)
 
     template = 'blog/tag_posts.html'
     context = {'page_posts': p.page(int(page_number)).object_list,
@@ -67,8 +69,9 @@ def post(request, post_id):
 
 def about(request):
     template = 'blog/about.html'
-    
-    return render(request, template)
+    context = {'blog_about': settings.BLOG_ABOUT}
+
+    return render(request, template, context)
 
 
 # redirects to the home page, but forces a login first

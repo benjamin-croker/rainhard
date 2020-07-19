@@ -14,8 +14,6 @@ class Post(models.Model):
         try:
             return self.get_previous_by_pub_datetime()
         except self.DoesNotExist:
-            # TODO: consider if this is necessary here.
-            # May end up just looking for a None anyway?
             return None
    
     @property

@@ -1,5 +1,5 @@
 {% extends "blog/base.html" %}
-{% block title %}rainhard{% endblock %}
+{% block title %}{{ blog_name }}{% endblock %}
 
 {% block body %}
 {% include "blog/base_header.html" %}
@@ -7,10 +7,7 @@
 <div class="row py-3 shaded">
   <div class="col-sm-12">
     <h1 class="nounderline text-dark display-4">About</h1>
-    <p>A blog made with rainhard</p>
-    <a href="https://github.com/benjamin-croker/rainhard">
-      https://github.com/benjamin-croker/rainhard
-    </a>
+    <p>{{ blog_about }}</p>
   </div>
 </div>
 
