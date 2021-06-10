@@ -1,6 +1,6 @@
 asgiref==3.2.7
 bleach==3.3.0
-Django==3.0.14
+Django==3.1.12
 packaging==20.4
 pycodestyle==2.6.0
 pyparsing==2.4.7
