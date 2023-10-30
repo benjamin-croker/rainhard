@@ -63,5 +63,11 @@ venv/
 !.vscode/extensions.json 
 .history
 
+# Pycharm
+.idea
+
 # server-specific settings
 rainhard/local_settings.py
+
+# os files
+.DS_Store

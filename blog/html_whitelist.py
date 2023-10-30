@@ -3,7 +3,7 @@ ALLOWED_ATTRIBUTES = {
     '*': ['style', 'class']
 }
 
-ALLOWED_TAGS =  [
+ALLOWED_TAGS = [
     'a', 'abbr', 'acronym', 'b', 'blockquote', 'code',
     'em', 'i', 'li', 'ol', 'strong', 'ul', 'img', 'span',
     'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
