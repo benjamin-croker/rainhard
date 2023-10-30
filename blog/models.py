@@ -1,9 +1,11 @@
 import bleach
+from bleach.css_sanitizer import CSSSanitizer
 from django.db import models
 from blog.html_whitelist import ALLOWED_TAGS, ALLOWED_ATTRIBUTES, ALLOWED_STYLES
 
 
 class Post(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=128)
     text = models.TextField()
     pub_datetime = models.DateTimeField(null=False)
@@ -42,8 +44,9 @@ class Post(models.Model):
     def cleaned_html(self):
         return bleach.clean(
             self.text,
-            ALLOWED_TAGS, ALLOWED_ATTRIBUTES, ALLOWED_STYLES,
-            strip=True
+            tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRIBUTES,
+            strip=True,
+            css_sanitizer=CSSSanitizer(ALLOWED_STYLES)
         )
     
     def __str__(self):
@@ -51,6 +54,7 @@ class Post(models.Model):
 
 
 class Tag(models.Model):
+    id = models.AutoField(primary_key=True)
     text = models.CharField(max_length=256)
 
     def __str__(self):
@@ -58,6 +62,7 @@ class Tag(models.Model):
 
 
 class PostTag(models.Model):
+    id = models.AutoField(primary_key=True)
     post = models.ForeignKey(Post, on_delete=models.DO_NOTHING)
     tag = models.ForeignKey(Tag, on_delete=models.DO_NOTHING)
 
